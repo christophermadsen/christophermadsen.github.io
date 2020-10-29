@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories | Christopher&#39;s Portfolio</title>
+    <link>http://christophermadsen.github.io/categories/</link>
+      <atom:link href="http://christophermadsen.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <description>Categories</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language>
+    <image>
+      <url>http://christophermadsen.github.io/media/avatar.jpg</url>
+      <title>Categories</title>
+      <link>http://christophermadsen.github.io/categories/</link>
+    </image>
+    
+  </channel>
+</rss>
