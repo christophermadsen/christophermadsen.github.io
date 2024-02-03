@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Transfer Learning | Christopher&#39;s Portfolio</title>
+    <link>http://christophermadsen.github.io/tag/transfer-learning/</link>
+      <atom:link href="http://christophermadsen.github.io/tag/transfer-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Transfer Learning</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 29 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://christophermadsen.github.io/media/avatar.jpg</url>
+      <title>Transfer Learning</title>
+      <link>http://christophermadsen.github.io/tag/transfer-learning/</link>
+    </image>
+    
+    <item>
+      <title>Bachelor Thesis</title>
+      <link>http://christophermadsen.github.io/project/thesis/</link>
+      <pubDate>Fri, 29 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://christophermadsen.github.io/project/thesis/</guid>
+      <description>&lt;h3 id=&#34;key-takeaways&#34;&gt;Key Takeaways&lt;/h3&gt;
+&lt;p&gt;While working on my bachelor thesis I learnt a great many things, including the following; The PyTorch deep learning framework for building models, processing image data, working on GPUs and loading data with multithreading. Advanced image data processing methods. Utilizing transfer learning and fine-tuning models to perform well on data from a different domain. Explaining and visualizing the decision making of a convolutional model through class activation mapping (CAM). Reading and applying knowledge from research papers.&lt;/p&gt;
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;My thesis involved investigating and building a simpler convolutional model for recognising Christian saints in renaissance artworks by the most distinct visual features from their respective iconography. Such features could be the arrows piercing Saint Sebastian, the ointment jar of Mary Magdalene or the lion accompanying Saint Jerome. This was to find a baseline for the aforementioned task and investigate how complex/deep such a model needed to be to base its decision on the iconography of the saint.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-examples-of-the-data&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;http://christophermadsen.github.io/project/thesis/intropic_hua8d5c8d706054f8fcf7c5db85b7a6f95_272058_2000x2000_fit_q90_lanczos.jpg&#34; data-caption=&#34;Examples of the data&#34;&gt;
+
+
+  &lt;img data-src=&#34;http://christophermadsen.github.io/project/thesis/intropic_hua8d5c8d706054f8fcf7c5db85b7a6f95_272058_2000x2000_fit_q90_lanczos.jpg&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1342&#34; height=&#34;740&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    Examples of the data
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;A link to my thesis is at the top of this page.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;the-model&#34;&gt;The model&lt;/h3&gt;
+&lt;p&gt;The model chosen was a VGG-16, pretrained on the ImageNet data set. I fine-tuned it on the ArtDL data set (data set of the Christian saints) with 3 different training strategies of varying data pre-processing techniques and different choices of frozen layers. In addition I modified the model to be fully convolutional and generate class activation mappings showing heatmaps of the features used for inference. The most successful strategy involved freezing the input layer, the first convolutional block and half of the second, together with image normalization, random erasing augmentation and expansion of the data to minimize class imbalance.&lt;/p&gt;
+&lt;h3 id=&#34;results&#34;&gt;Results&lt;/h3&gt;
+&lt;p&gt;The final macro averages of the model results were:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Precision&lt;/th&gt;
+&lt;th&gt;Recall&lt;/th&gt;
+&lt;th&gt;F1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.61&lt;/td&gt;
+&lt;td&gt;0.25&lt;/td&gt;
+&lt;td&gt;0.31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The precision was rather high for a baseline model, but the low recall and further investigation showed bias towards Virgin Mary, the class with significantly more data than the rest. This was mainly due to the relatively shallow depth of the model compared to the state-of-art, a ResNet50. The investigation showed that a model of only 16 layers of depth isn&amp;rsquo;t deep enough for more abstract features such as the entirety of Mary Magdalene&amp;rsquo;s ointment jar. Further investigation showed that in many cases the baseline model extracted similar features or parts of more abstract features used by the state-of-art model. Example is nudity textures together with arrow lines, versus the specific arrow penetration areas for Saint Sebastian, or the texture of Mary Magdalene&amp;rsquo;s curly hair and lines of the ointment jar, versus specifically the ointment jar.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-cams-from-the-vgg-16-model-1&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;http://christophermadsen.github.io/project/thesis/thesis1_hu403907a8f02ca8065492bafac2c11899_9213565_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;CAMs from the VGG-16 model (1)&#34;&gt;
+
+
+  &lt;img data-src=&#34;http://christophermadsen.github.io/project/thesis/thesis1_hu403907a8f02ca8065492bafac2c11899_9213565_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;4000&#34; height=&#34;1543&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    CAMs from the VGG-16 model (1)
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-cams-from-the-vgg-16-model-2&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;http://christophermadsen.github.io/project/thesis/thesis2_hud0f10b99d2db9880fe75492ae00033be_11268404_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;CAMs from the VGG-16 model (2)&#34;&gt;
+
+
+  &lt;img data-src=&#34;http://christophermadsen.github.io/project/thesis/thesis2_hud0f10b99d2db9880fe75492ae00033be_11268404_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;4000&#34; height=&#34;2009&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    CAMs from the VGG-16 model (2)
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+</description>
+    </item>
+    
+  </channel>
+</rss>
